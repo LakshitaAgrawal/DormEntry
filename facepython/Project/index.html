@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Attendance Tracker</title>
+  </head>
+  <body>
+    <h1>Attendance Tracker</h1>
+
+    <ul id="attendance-list"></ul>
+
+    <script>
+      // Fetch attendance records from server and update the list
+      fetch('/attendance')
+        .then(response => response.json())
+        .then(attendance => {
+          const list = document.getElementById('attendance-list');
+
+          attendance.forEach(entry => {
+            const listItem = document.createElement('li');
+            listItem.innerText = `${entry.name} - ${entry.date}`;
+            list.appendChild(listItem);
+          });
+        });
+    </script>
+  </body>
+</html>
